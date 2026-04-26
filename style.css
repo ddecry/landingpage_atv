@@ -403,11 +403,9 @@ article.card footer {
     overflow: hidden;
 }
 
-.twitter-box iframe {
+.twitter-box a {
+    display: block;
     width: 100%;
-    height: 600px;
-    border: none;
-    border-radius: 22px;
 }
 
 .contact-box {
