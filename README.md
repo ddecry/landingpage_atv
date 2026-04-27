@@ -24,10 +24,3 @@ O site foi criado com layout moderno, tema escuro e identidade voltada para terr
 
 - HTML5 (semântico)
 - CSS3 (layout responsivo)
-- Widget oficial do Twitter/X (`widgets.js`)
-
----
-
-## 📂 Estrutura de Pastas
-
-O projeto deve estar organizado assim:
