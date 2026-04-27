@@ -55,6 +55,6 @@ Este projeto foi desenvolvido para:
 
 ---
 
-## 🌐 Site ao vivo
+## 🌐 Site
 
 [https://realitasnews.netlify.app/](https://realitasnews.netlify.app/)
