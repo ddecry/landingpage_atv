@@ -1,26 +1,70 @@
 # 📰 RealitasNews - Portal de Notícias (Ordem Paranormal)
 
-Este projeto é um site estilo **portal de notícias**, desenvolvido para a página **RealitasNews**, focada no universo de **Ordem Paranormal**.
+Projeto desenvolvido como atividade acadêmica do curso de **Desenvolvimento Web na UNIFSA**, por **Arthur de Holanda**.
 
-O site foi criado com layout moderno, tema escuro e identidade voltada para terror/suspense, trazendo seções de manchete, últimas notícias, reviews, resenhas e integração com tweets do X/Twitter.
+Este projeto consiste em um **portal de notícias temático**, inspirado no universo de **Ordem Paranormal**, com foco em suspense, terror e imersão visual. O site simula uma página de notícias moderna, com estrutura completa de portal informativo.
 
 ---
 
-## 📌 Funcionalidades
+## 👨‍💻 Autor
 
-- Header com logo e menu de navegação
-- Área de manchete principal com imagem
-- Seção "Sobre"
-- Seção "Últimas Notícias"
-- Seção de Reviews e Resenhas
-- Widget com feed oficial do X/Twitter
-- Seção de Contato e Parcerias
-- Links para redes sociais oficiais
-- Design responsivo (adaptado para celulares)
+**Arthur de Holanda**
+Projeto acadêmico - UNIFSA
+Desenvolvimento Web
+
+---
+
+## 📌 Sobre o Projeto
+
+O **RealitasNews** foi criado com a proposta de simular um portal de notícias fictício dentro do universo de *Ordem Paranormal*, combinando estética sombria com uma interface moderna e responsiva.
+
+O objetivo principal foi aplicar conceitos de **HTML e CSS**, desenvolvendo uma interface realista e funcional.
+
+---
+
+## 🧩 Funcionalidades
+
+* 🧭 Header com logo e menu de navegação
+* 📰 Seção de manchete principal com destaque visual
+* ℹ️ Seção “Sobre o site”
+* 🗞️ Últimas notícias
+* ⭐ Reviews e resenhas temáticas
+* 🐦 Integração com feed do X (Twitter)
+* 📩 Seção de contato e parcerias
+* 🔗 Links para redes sociais
+* 📱 Layout totalmente responsivo
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- HTML5 (semântico)
-- CSS3 (layout responsivo)
+* HTML5 (estrutura semântica)
+* CSS3 (estilização e responsividade)
+
+---
+
+## 🎨 Identidade Visual
+
+O projeto utiliza um tema inspirado em:
+
+* 🌑 Estética escura (dark mode)
+* 🕯️ Terror / suspense
+* 📰 Layout de portal jornalístico moderno
+* 🎭 Elementos visuais do universo de Ordem Paranormal
+
+---
+
+## 🚀 Objetivo Acadêmico
+
+Este projeto foi desenvolvido para:
+
+* Aplicar conceitos de desenvolvimento web
+* Praticar estruturação de páginas HTML
+* Trabalhar design responsivo com CSS
+* Criar um projeto completo para portfólio acadêmico
+
+---
+
+## 🌐 Site ao vivo
+
+[https://realitasnews.netlify.app/](https://realitasnews.netlify.app/)
