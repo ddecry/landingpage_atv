@@ -58,3 +58,9 @@ Este projeto foi desenvolvido para:
 ## 🌐 Site
 
 [https://realitasnews.netlify.app/](https://realitasnews.netlify.app/)
+
+---
+
+## 📽️ Vídeo
+
+[https://youtu.be/sdjwR06q0kM](https://youtu.be/sdjwR06q0kM)
