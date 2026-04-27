@@ -43,17 +43,6 @@ O objetivo principal foi aplicar conceitos de **HTML e CSS**, desenvolvendo uma 
 
 ---
 
-## 🎨 Identidade Visual
-
-O projeto utiliza um tema inspirado em:
-
-* 🌑 Estética escura (dark mode)
-* 🕯️ Terror / suspense
-* 📰 Layout de portal jornalístico moderno
-* 🎭 Elementos visuais do universo de Ordem Paranormal
-
----
-
 ## 🚀 Objetivo Acadêmico
 
 Este projeto foi desenvolvido para:
