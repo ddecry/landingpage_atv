@@ -9,12 +9,6 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    background: radial-gradient(circle at top, #14141a, #070709);
-    color: #f1f1f1;
-    line-height: 1.6;
-}
-
 a {
     text-decoration: none;
     color: inherit;
@@ -37,18 +31,86 @@ img {
 
 :root {
     --primary: #b1121c;
+    --primary-strong: #d61f2a;
+    --button-contrast: rgba(255, 255, 255, 0.16);
+    --button-contrast-hover: rgba(255, 255, 255, 0.28);
+    --bg-main: radial-gradient(circle at top, #14141a, #070709);
+    --header-bg: rgba(10, 10, 12, 0.9);
+    --nav-bg: rgba(0, 0, 0, 0.55);
     --card: rgba(30, 30, 38, 0.92);
     --gray: rgba(255, 255, 255, 0.08);
     --text: #f1f1f1;
+    --muted-text: rgba(241, 241, 241, 0.78);
+    --soft-surface: rgba(0, 0, 0, 0.4);
+    --shadow-strong: 0 12px 30px rgba(0, 0, 0, 0.55);
+    --shadow-card: 0 12px 22px rgba(0, 0, 0, 0.45);
+    --icon-filter: brightness(0) invert(1);
+}
+
+body.light-theme {
+    --primary: #9f0f1a;
+    --primary-strong: #7f0c15;
+    --button-contrast: rgba(20, 12, 8, 0.18);
+    --button-contrast-hover: rgba(20, 12, 8, 0.3);
+    --bg-main: linear-gradient(180deg, #f7f1eb 0%, #ece3d9 100%);
+    --header-bg: rgba(250, 246, 240, 0.92);
+    --nav-bg: rgba(255, 255, 255, 0.72);
+    --card: rgba(255, 252, 247, 0.94);
+    --gray: rgba(41, 27, 18, 0.12);
+    --text: #211510;
+    --muted-text: rgba(33, 21, 16, 0.72);
+    --soft-surface: rgba(255, 255, 255, 0.62);
+    --shadow-strong: 0 12px 28px rgba(88, 46, 29, 0.12);
+    --shadow-card: 0 12px 24px rgba(88, 46, 29, 0.1);
+    --icon-filter: none;
+}
+
+body {
+    background: var(--bg-main);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.35s ease, color 0.35s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: no-repeat;
+}
+
+body::before {
+    background:
+        radial-gradient(circle at 18% 12%, rgba(182, 18, 28, 0.12), transparent 22%),
+        radial-gradient(circle at 82% 16%, rgba(214, 31, 42, 0.12), transparent 20%),
+        radial-gradient(circle at 50% 4%, rgba(255, 255, 255, 0.025), transparent 16%);
+    transform: translate3d(0, calc(var(--parallax-offset, 0px) * 0.18), 0);
+}
+
+body::after {
+    background:
+        radial-gradient(circle at 14% 78%, rgba(182, 18, 28, 0.06), transparent 20%),
+        radial-gradient(circle at 86% 74%, rgba(214, 31, 42, 0.07), transparent 18%);
+    transform: translate3d(0, calc(var(--parallax-offset, 0px) * 0.1), 0);
 }
 
 header {
-    background: rgba(10, 10, 12, 0.9);
+    background: var(--header-bg);
     border-bottom: 1px solid var(--gray);
     position: sticky;
     top: 0;
     z-index: 20;
     backdrop-filter: blur(10px);
+    transition: background 0.35s ease, border-color 0.35s ease;
 }
 
 .header-top {
@@ -83,9 +145,30 @@ header {
     opacity: 0.75;
 }
 
+.theme-toggle {
+    min-width: 132px;
+    padding: 10px 14px;
+    border: 1px solid var(--gray);
+    border-radius: 14px;
+    background: var(--soft-surface);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
 nav {
-    background: rgba(0, 0, 0, 0.55);
+    background: var(--nav-bg);
     border-top: 1px solid var(--gray);
+    transition: background 0.35s ease, border-color 0.35s ease;
 }
 
 nav ul {
@@ -124,9 +207,19 @@ main {
     border-radius: 22px;
     border: 1px solid var(--gray);
     overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+    box-shadow: var(--shadow-strong);
     position: relative;
     height: 420px;
+}
+
+.hero-featured::before {
+    content: "";
+    position: absolute;
+    inset: auto 8% -28% 8%;
+    height: 58%;
+    background: radial-gradient(circle, rgba(214, 31, 42, 0.34) 0%, rgba(214, 31, 42, 0.12) 38%, transparent 74%);
+    filter: blur(34px);
+    z-index: 0;
 }
 
 .hero-featured img {
@@ -147,12 +240,13 @@ main {
     width: 100%;
     padding: 18px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.05));
+    z-index: 1;
 }
 
 .hero-featured-content span {
     display: inline-block;
     background: var(--primary);
-    color: var(--text);
+    color: #ffffff;
     padding: 7px 14px;
     border-radius: 20px;
     font-size: 12px;
@@ -164,6 +258,7 @@ main {
     font-size: 28px;
     margin-bottom: 8px;
     line-height: 1.2;
+    color: #ffffff;
 }
 
 .hero-featured-content p {
@@ -171,6 +266,7 @@ main {
     opacity: 0.9;
     margin-bottom: 12px;
     max-width: 700px;
+    color: #ffffff;
 }
 
 .hero-btns {
@@ -191,23 +287,25 @@ main {
 }
 
 .btn-primary {
-    background: var(--primary);
-    color: var(--text);
+    background: var(--primary-strong);
+    color: #ffffff;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22), 0 0 18px rgba(182, 18, 28, 0.28);
 }
 
 .btn-primary:hover {
-    opacity: 0.85;
+    background: var(--primary);
 }
 
 .btn-outline {
-    border: 2px solid rgba(255, 255, 255, 0.12);
-    background: transparent;
-    color: var(--text);
+    border: 2px solid var(--button-contrast);
+    background: var(--button-contrast);
+    color: #ffffff;
 }
 
 .btn-outline:hover {
-    border: 2px solid var(--primary);
-    color: var(--primary);
+    border: 2px solid var(--button-contrast-hover);
+    background: var(--button-contrast-hover);
+    color: #ffffff;
 }
 
 .hero-side {
@@ -221,7 +319,21 @@ main {
     border: 1px solid var(--gray);
     border-radius: 22px;
     padding: 14px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+    box-shadow: var(--shadow-strong);
+}
+
+.hero-featured,
+.side-card,
+article.news-row,
+article.card,
+.twitter-intro,
+.twitter-box,
+.about-box,
+.contact-box {
+    box-shadow:
+        var(--shadow-card),
+        0 0 0 1px rgba(182, 18, 28, 0.04),
+        0 14px 32px rgba(182, 18, 28, 0.08);
 }
 
 .side-card h3 {
@@ -232,7 +344,7 @@ main {
 
 .side-card p {
     font-size: 13px;
-    opacity: 0.75;
+    color: var(--muted-text);
 }
 
 section {
@@ -292,7 +404,7 @@ article.news-row {
     justify-content: space-between;
     gap: 15px;
     transition: 0.3s;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-card);
 }
 
 article.news-row:hover {
@@ -316,7 +428,7 @@ article.news-row:hover {
 
 .news-row p {
     font-size: 13px;
-    opacity: 0.75;
+    color: var(--muted-text);
 }
 
 .news-row .meta {
@@ -338,7 +450,7 @@ article.card {
     border-radius: 22px;
     padding: 14px;
     transition: 0.3s;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.45);
+    box-shadow: var(--shadow-card);
     min-height: 160px;
     display: flex;
     flex-direction: column;
@@ -366,7 +478,7 @@ article.card h3 {
 
 article.card p {
     font-size: 13px;
-    opacity: 0.75;
+    color: var(--muted-text);
 }
 
 article.card footer {
@@ -380,12 +492,12 @@ article.card footer {
     border: 1px solid var(--gray);
     border-radius: 22px;
     padding: 16px;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.45);
+    box-shadow: var(--shadow-card);
 }
 
 .about-box p {
     margin-bottom: 10px;
-    opacity: 0.85;
+    color: var(--muted-text);
     font-size: 14px;
 }
 
@@ -399,15 +511,126 @@ article.card footer {
     border: 1px solid var(--gray);
     border-radius: 22px;
     padding: 12px;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.45);
+    box-shadow: var(--shadow-card);
     overflow: hidden;
 }
 
-.twitter-box iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
+.twitter-panel {
+    display: grid;
+    gap: 16px;
+}
+
+.twitter-intro {
+    background: var(--card);
+    border: 1px solid var(--gray);
     border-radius: 22px;
+    padding: 18px;
+    box-shadow: var(--shadow-card);
+}
+
+.twitter-intro p {
+    font-size: 14px;
+    color: var(--muted-text);
+    margin-bottom: 14px;
+}
+
+.twitter-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.twitter-timeline-container {
+    min-height: 420px;
+}
+
+.twitter-timeline-container iframe {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
+.twitter-loading {
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    color: var(--muted-text);
+}
+
+.twitter-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.twitter-modal.is-open {
+    display: flex;
+}
+
+.twitter-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(5px);
+}
+
+.twitter-modal-dialog {
+    position: relative;
+    width: min(1120px, 100%);
+    max-height: 92vh;
+    background: var(--card);
+    border: 1px solid var(--gray);
+    border-radius: 12px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    overflow: hidden;
+}
+
+.twitter-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px 10px;
+}
+
+.twitter-modal-header h3 {
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.twitter-modal-close {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--gray);
+    border-radius: 14px;
+    background: var(--soft-surface);
+    color: var(--text);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.twitter-modal-close:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.twitter-modal-box {
+    margin: 0 20px 20px;
+    max-height: calc(92vh - 90px);
+}
+
+.twitter-modal-box .twitter-timeline {
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .contact-box {
@@ -420,12 +643,12 @@ article.card footer {
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.45);
+    box-shadow: var(--shadow-card);
 }
 
 .contact-text p {
     font-size: 14px;
-    opacity: 0.85;
+    color: var(--muted-text);
 }
 
 .social-icons {
@@ -438,11 +661,11 @@ article.card footer {
     width: 46px;
     height: 46px;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid var(--gray);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--soft-surface);
     transition: 0.3s;
 }
 
@@ -457,11 +680,12 @@ article.card footer {
 }
 
 footer.site-footer {
-    background: rgba(0, 0, 0, 0.85);
+    background: var(--header-bg);
     padding: 22px 0;
     text-align: center;
     margin-top: 30px;
     border-top: 1px solid var(--gray);
+    transition: background 0.35s ease, border-color 0.35s ease;
 }
 
 footer.site-footer p {
@@ -469,13 +693,66 @@ footer.site-footer p {
     opacity: 0.8;
 }
 
+footer.site-footer .container p:nth-of-type(n + 3) {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1.45fr 0.85fr;
+        gap: 16px;
+    }
+
+    .hero-featured {
+        height: 390px;
+    }
+
+    .hero-featured-content h2 {
+        font-size: 25px;
+    }
+
+    .news-grid {
+        grid-template-columns: 1.35fr 0.95fr;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .twitter-modal-dialog {
+        width: min(980px, 100%);
+    }
+}
+
 @media (max-width: 768px) {
+    .header-top {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .logo-area {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .theme-toggle {
+        width: 100%;
+        max-width: 240px;
+    }
+
     .hero-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
     }
 
     .hero-featured {
         height: 340px;
+        border-radius: 20px;
     }
 
     .hero-featured-content h2 {
@@ -493,12 +770,87 @@ footer.site-footer p {
     nav ul {
         justify-content: center;
         gap: 14px;
+        padding: 10px 0 12px;
+    }
+
+    .twitter-actions {
+        flex-direction: column;
+    }
+
+    .twitter-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .contact-box {
+        align-items: flex-start;
     }
 }
 
 @media (max-width: 425px) {
+    .container {
+        padding: 0 14px;
+    }
+
+    .header-top {
+        gap: 14px;
+        padding: 10px 0;
+    }
+
+    .logo-area {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .logo-img {
+        width: 46px;
+        height: 46px;
+    }
+
+    .logo-text h1 {
+        font-size: 18px;
+    }
+
+    .logo-text p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    nav .container {
+        padding: 0;
+    }
+
+    nav ul {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 10px 14px 12px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    nav ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    nav ul li {
+        flex: 0 0 auto;
+    }
+
+    nav ul li a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 38px;
+        padding: 0 12px;
+        border: 1px solid var(--gray);
+        border-radius: 999px;
+        background: var(--soft-surface);
+        white-space: nowrap;
+    }
+
     .hero-featured {
-        height: 300px;
+        height: 320px;
     }
 
     .hero-featured-content {
@@ -509,9 +861,15 @@ footer.site-footer p {
         font-size: 20px;
     }
 
+    .hero-featured-content p {
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
     .btn {
         width: 100%;
         text-align: center;
+        min-height: 44px;
     }
 
     .hero-btns {
@@ -522,32 +880,82 @@ footer.site-footer p {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .twitter-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    article.news-row {
+        flex-direction: column;
+    }
+
+    .news-row .meta {
+        min-width: auto;
+        text-align: left;
+    }
+
+    .section-title h2 {
+        font-size: 18px;
+    }
+
+    .section-title a {
+        font-size: 11px;
+    }
+
+    .twitter-modal {
+        padding: 14px;
+    }
+
+    .twitter-modal-header {
+        padding: 16px 16px 10px;
+    }
+
+    .twitter-modal-header h3 {
+        font-size: 16px;
+    }
+
+    .twitter-modal-box {
+        margin: 0 16px 16px;
+    }
+
+    .twitter-timeline-container,
+    .twitter-loading {
+        min-height: 65vh;
+    }
 }
 
 @media (max-width: 375px) {
     .hero-featured {
-        height: 270px;
+        height: 300px;
     }
 
     .logo-text h1 {
-        font-size: 18px;
+        font-size: 17px;
     }
 
     .logo-text p {
         font-size: 11px;
     }
-}
-
-@media (max-width: 320px) {
-    .hero-featured {
-        height: 240px;
-    }
 
     .hero-featured-content h2 {
         font-size: 18px;
     }
+}
+
+@media (max-width: 320px) {
+    .hero-featured {
+        height: 280px;
+    }
+
+    .hero-featured-content h2 {
+        font-size: 17px;
+    }
 
     nav ul li a {
         font-size: 11px;
+        padding: 0 10px;
     }
 }
+
+
