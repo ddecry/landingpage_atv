@@ -40,6 +40,7 @@ O objetivo principal foi aplicar conceitos de **HTML e CSS**, desenvolvendo uma 
 
 * HTML5 (estrutura semântica)
 * CSS3 (estilização e responsividade)
+* JavaScript (integração do widget do X/Twitter)
 
 ---
 
