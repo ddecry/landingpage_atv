@@ -124,25 +124,40 @@ header {
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    min-width: 0;
 }
 
 .logo-img {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    object-fit: cover;
+    width: 64px;
+    height: 64px;
+    padding: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 50% 34%, rgba(214, 31, 42, 0.3), transparent 58%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.35));
+    object-fit: contain;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.logo-area:hover .logo-img {
+    border-color: rgba(214, 31, 42, 0.6);
+    transform: translateY(-1px) scale(1.03);
 }
 
 .logo-text h1 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 0;
+    line-height: 1.1;
 }
 
 .logo-text p {
     font-size: 12px;
     opacity: 0.75;
+    max-width: 340px;
 }
 
 .theme-toggle {
@@ -803,8 +818,9 @@ footer.site-footer .container p:nth-of-type(n + 3) {
     }
 
     .logo-img {
-        width: 46px;
-        height: 46px;
+        width: 54px;
+        height: 54px;
+        padding: 6px;
     }
 
     .logo-text h1 {
@@ -957,5 +973,3 @@ footer.site-footer .container p:nth-of-type(n + 3) {
         padding: 0 10px;
     }
 }
-
-
